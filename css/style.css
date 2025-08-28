@@ -1,0 +1,65 @@
+:root{
+--pink-1:#ffe8f1; --pink-2:#ffd1e6; --pink-3:#ff9fc6; --pink-4:#ff6aa3; --pink-5:#e14e8e;
+--rose-1:#ffe4ec; --rose-2:#ffd7e5; --text:#3a2a38; --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, "Helvetica Neue", Arial;
+color:var(--text);
+background: radial-gradient(1200px 700px at 10% 10%, var(--pink-2), transparent 60%),
+radial-gradient(900px 600px at 90% 20%, var(--rose-2), transparent 60%),
+linear-gradient(180deg, var(--rose-1), var(--pink-1));
+overflow-x:hidden;
+}
+.blur-bg{position:fixed; inset:-20vmax; filter:blur(60px); z-index:-1; opacity:.7;
+background: radial-gradient(60vmax 40vmax at 80% 10%, #ff8fc4, transparent 60%),
+radial-gradient(40vmax 30vmax at 10% 80%, #ffc3de, transparent 60%);
+}
+.container{max-width:1200px; margin:0 auto; padding:18px 20px}
+.brand{display:flex; align-items:center; gap:12px}
+.logo{width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg, var(--pink-4), var(--pink-3)); box-shadow:0 8px 20px #ff6aa350}
+.site-header{position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background:linear-gradient(180deg, #ffffffaa, #ffffff70); border-bottom:1px solid #ffffff80}
+.grid{display:grid; grid-template-columns: 1.05fr 1.15fr; gap:22px}
+@media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+.card{background:linear-gradient(180deg, #fff, #fff0); border:1px solid #fff6; border-radius:22px; box-shadow:0 10px 30px #ff8fc433; backdrop-filter: blur(6px)}
+.card-head{padding:16px 18px 6px 18px; display:flex; align-items:center; justify-content:space-between}
+.title{font-weight:700; font-size:18px}
+.meta{font-size:12px; opacity:.7}
+.actions .btn{margin-left:8px}
+.btn{border:none; padding:10px 14px; border-radius:14px; font-weight:700; cursor:pointer; background:linear-gradient(135deg, var(--pink-4), var(--pink-3)); color:#fff; box-shadow:0 10px 20px #ff6aa34a; transition:.2s}
+.btn:hover{transform:translateY(-1px)}
+.btn.danger{background:linear-gradient(135deg, #f87171, #fb7185)}
+
+
+/* Calendar */
+.calendar{padding:6px 18px 18px}
+.cal-week{display:grid; grid-template-columns: repeat(7, 1fr); gap:8px; font-size:12px; opacity:.7; margin:8px 0}
+.cal-grid{display:grid; grid-template-columns: repeat(7, 1fr); gap:8px}
+.day{aspect-ratio:1/1; border-radius:14px; display:flex; align-items:center; justify-content:center; cursor:pointer; user-select:none; transition:.2s; background:#fff; border:1px solid #00000008}
+.day:hover{transform:translateY(-2px); box-shadow:0 10px 18px #ff8fc426}
+.day.other{opacity:.35}
+.day .dot{position:absolute; bottom:6px; width:6px; height:6px; border-radius:50%; background:var(--pink-4)}
+
+
+/* Notes */
+.notes{padding:12px 18px 18px; display:grid; grid-template-columns:1fr; gap:12px}
+.note-form{display:grid; grid-template-columns:1fr auto; gap:10px}
+textarea{resize:vertical; min-height:80px; max-height:200px; padding:12px; border-radius:14px; border:1px solid #00000012; font-family:inherit; outline:none; background:#fff9fc}
+.toolbar{display:flex; gap:8px; flex-wrap:wrap}
+.file-label{cursor:pointer; display:inline-block}
+.wall{display:grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap:12px; margin-top:6px}
+.sticky{background:#fff; border:1px dashed #ff9fc6; border-radius:16px; padding:12px 12px 14px; position:relative; box-shadow:0 8px 18px #ff8fc422}
+.sticky::before{content:""; position:absolute; top:-8px; left:12px; width:40px; height:16px; border-radius:0 0 10px 10px; background:radial-gradient(16px 10px at 20px -2px, #ff9fc6, transparent 70%)}
+.time{font-size:11px; opacity:.6; margin-top:6px}
+
+
+/* Modal */
+.modal{position:fixed; inset:0; background:#0006; display:none; align-items:center; justify-content:center; padding:20px}
+.modal.open{display:flex}
+.modal-card{max-width:720px; width:100%; background:#fff; border-radius:20px; overflow:hidden; border:1px solid #00000012; box-shadow:0 20px 50px #00000033}
+.modal-head{display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:linear-gradient(180deg, #fff, #fff0)}
+.close{border:none; background:#0000; font-size:20px; cursor:pointer}
+.modal-body{padding:10px 16px 20px}
+.modal-img{width:100%; height:340px; object-fit:cover; background:#f7f7f7}
+.quote{font-size:16px; line-height:1.6; margin-top:10px}
