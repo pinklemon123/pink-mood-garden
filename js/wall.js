@@ -103,3 +103,64 @@ document.querySelectorAll('.post .like').forEach(btn=>{
 	};
 });
 }
+function updateCount(){
+        charCount.textContent = `${inputEl.value.length} / ${inputEl.maxLength}`;
+}
+
+inputEl.addEventListener('input', updateCount);
+
+postBtn.addEventListener('click', ()=>{
+        const wait = remaining();
+        if(wait > 0){
+                tipEl.textContent = `请等待 ${wait} 秒后再发布`;
+                return;
+        }
+        const text = sanitize(inputEl.value);
+        if(!text){
+                tipEl.textContent = '写点内容再发布吧～';
+                return;
+        }
+        state.posts.push({
+                id: crypto.randomUUID(),
+                text,
+                emoji: emojiPick.value,
+                ts: now(),
+                likes: 0,
+                comments: []
+        });
+        state.lastPostAt = now();
+        inputEl.value = '';
+        emojiPick.value = '';
+        tipEl.textContent = '';
+        updateCount();
+        save();
+        render();
+});
+
+emojiPick.addEventListener('change', ()=>{
+        if(emojiPick.value){
+                inputEl.value += emojiPick.value;
+                emojiPick.value = '';
+                updateCount();
+                inputEl.focus();
+        }
+});
+
+tabs.forEach(tab=>{
+        tab.addEventListener('click', ()=>{
+                sortMode = tab.dataset.sort;
+                tabs.forEach(t=> t.classList.toggle('active', t === tab));
+                render();
+        });
+});
+
+clearAllBtn.addEventListener('click', ()=>{
+        if(confirm('确定要清空本地数据吗？')){
+                state = { posts: [], lastPostAt: 0 };
+                save();
+                render();
+        }
+});
+
+render();
+updateCount();
