@@ -1,6 +1,6 @@
-import './calendar.js';
-import './notes.js';
-import './effects.js';
+import { initCalendar } from './calendar.js';
+import { initNotes } from './notes.js';
+import { enableClickHearts } from './effects.js';
 
 
 
