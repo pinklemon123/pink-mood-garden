@@ -9,8 +9,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css" />
+<!-- ...其余不变... -->
+<meta name="theme-color" content="#ff6aa3" />
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
 </head>
 <body>
+<button id="a2hsBtn" class="btn" style="position:fixed; right:16px; bottom:16px; z-index:50; display:none">安装到主屏幕</button>
+
 <div class="blur-bg" aria-hidden="true"></div>
 
 
@@ -75,4 +81,26 @@
 <div class="modal-head">
 <div class="title" id="moodTitle">今日心情</div>
 <button class="close" id="closeModal" aria-label="关闭">✕</button>
+</div>
+<img id="moodImg" class="modal-img" alt="mood" />
+<div class="modal-body">
 </html>
+<script>
+// 注册 Service Worker
+if('serviceWorker' in navigator){
+window.addEventListener('load', ()=>{
+navigator.serviceWorker.register('/sw.js');
+});
+}
+// A2HS（Add to Home Screen）引导
+let deferredPrompt;
+const a2hsBtn = document.getElementById('a2hsBtn');
+window.addEventListener('beforeinstallprompt', (e)=>{
+e.preventDefault(); deferredPrompt = e; a2hsBtn.style.display='block';
+});
+a2hsBtn?.addEventListener('click', async ()=>{
+a2hsBtn.style.display='none';
+if(deferredPrompt){ deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; }
+});
+</script>
+</body>

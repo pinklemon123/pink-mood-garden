@@ -1,0 +1,20 @@
+{
+"name": "Pink Mood Garden",
+"short_name": "PinkMood",
+"description": "粉色系 · 小日历心情 · 爱心点击特效 · 匿名小纸条",
+"start_url": "/",
+"scope": "/",
+"display": "standalone",
+"background_color": "#ffe8f1",
+"theme_color": "#ff6aa3",
+"icons": [
+{
+  "icons": [
+    { "src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/img/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
+]
+}
