@@ -1,3 +1,21 @@
+// Calendar & Mood modal (轮播选择 + 预加载，避免总是同一张)
+test.src = payload.img;
+tryOne();
+// Calendar & Mood modal
+export function initCalendar({ ymEl, gridEl, prevBtn, nextBtn, modalEls, moodsUrl = '/assets/data/moods.json' }){
+
+
+prevBtn.addEventListener('click', ()=> setYM(new Date(viewYear, viewMonth-1, 1)));
+nextBtn.addEventListener('click', ()=> setYM(new Date(viewYear, viewMonth+1, 1)));
+closeBtn.addEventListener('click', ()=> modal.classList.remove('open'));
+window.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.classList.remove('open'); });
+
+
+(async function init(){
+await loadMoods();
+setYM(new Date());
+})();
+}
 // Calendar & Mood modal
 export function initCalendar({ ymEl, gridEl, prevBtn, nextBtn, modalEls, moodsUrl = '/assets/data/moods.json' }){
 const { modal, imgEl, quoteEl, closeBtn } = modalEls;
@@ -27,6 +45,7 @@ renderCalendar();
 
 function renderCalendar(){
 ymEl.textContent = `${viewYear} 年 ${String(viewMonth+1).padStart(2,'0')} 月`;
+// (Removed duplicate code block and function definition)
 gridEl.innerHTML = '';
 const firstDay = new Date(viewYear, viewMonth, 1);
 const startWeek = (firstDay.getDay() + 6) % 7; // 周一=0

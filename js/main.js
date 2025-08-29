@@ -3,7 +3,6 @@ import { initNotes } from './notes.js';
 import { enableClickHearts } from './effects.js';
 
 
-
 // Calendar
 initCalendar({
 ymEl: document.getElementById('ym'),

@@ -1,112 +1,126 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Pink Mood Garden</title>
-<meta name="description" content="粉色系 · 小日历心情 · 爱心点击特效 · 匿名小纸条" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css" />
-<!-- ...其余不变... -->
-<meta name="theme-color" content="#ff6aa3" />
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pink Mood Garden</title>
+  <meta name="description" content="粉色系 · 小日历心情 · 爱心点击特效 · 匿名小纸条" />
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- PWA 相关新增 -->
+  <meta name="theme-color" content="#ff6aa3" />
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <!-- 样式 -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<button id="a2hsBtn" class="btn" style="position:fixed; right:16px; bottom:16px; z-index:50; display:none">安装到主屏幕</button>
+  <div class="blur-bg" aria-hidden="true"></div>
 
-<div class="blur-bg" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container brand">
+      <div class="logo"></div>
+      <h1>Pink Mood Garden</h1>
+    </div>
+  </header>
 
+  <main class="container grid">
+    <!-- 左：日历 -->
+    <section class="card" aria-label="心情日历">
+      <div class="card-head">
+        <div>
+          <div class="title">小日历 · 心情记录</div>
+          <div class="meta" id="ym"></div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="prevBtn" title="上个月">←</button>
+          <button class="btn" id="nextBtn" title="下个月">→</button>
+        </div>
+      </div>
+      <div class="calendar">
+        <div class="cal-week">
+          <div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+    </section>
 
-<header class="site-header">
-<div class="container brand">
-<div class="logo"></div>
-<h1>Pink Mood Garden</h1>
-</div>
-</header>
+    <!-- 右：匿名小纸条 -->
+    <section class="card" aria-label="匿名小纸条">
+      <div class="card-head">
+        <div>
+          <div class="title">匿名小纸条</div>
+          <div class="meta">仅本机保存（localStorage），支持导出/导入 JSON</div>
+        </div>
+      </div>
+      <div class="notes">
+        <form class="note-form" id="noteForm">
+          <textarea id="noteInput" placeholder="想说什么呢…"></textarea>
+          <button class="btn" type="submit">放上墙</button>
+        </form>
+        <div class="toolbar">
+          <button class="btn" id="exportBtn" type="button">导出 JSON</button>
+          <label class="btn file-label" for="importFile">导入 JSON</label>
+          <input id="importFile" type="file" accept="application/json" hidden />
+          <button class="btn danger" id="clearBtn" type="button">清空</button>
+        </div>
+        <div class="wall" id="wall"></div>
+      </div>
+    </section>
+  </main>
 
+  <!-- 心情弹窗 -->
+  <div class="modal" id="moodModal" role="dialog" aria-modal="true" aria-labelledby="moodTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="title" id="moodTitle">今日心情</div>
+        <button class="close" id="closeModal" aria-label="关闭">✕</button>
+      </div>
+      <img id="moodImg" class="modal-img" alt="mood" />
+      <div class="modal-body">
+        <div class="quote" id="moodQuote"></div>
+      </div>
+    </div>
+  </div>
 
-<main class="container grid">
-<!-- 左：日历 -->
-<section class="card" aria-label="心情日历">
-<div class="card-head">
-<div>
-<div class="title">小日历 · 心情记录</div>
-<div class="meta" id="ym"></div>
-</div>
-<div class="actions">
-<button class="btn" id="prevBtn" title="上个月">←</button>
-<button class="btn" id="nextBtn" title="下个月">→</button>
-</div>
-</div>
-<div class="calendar">
-<div class="cal-week">
-<div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div>
-</div>
-<div class="cal-grid" id="calGrid"></div>
-</div>
-</section>
+  <!-- 可选：安装到主屏幕按钮 -->
+  <button id="a2hsBtn" class="btn"
+          style="position:fixed; right:16px; bottom:16px; z-index:50; display:none">
+    安装到主屏幕
+  </button>
 
+  <noscript>需要启用 JavaScript 才能体验日历、便签和特效功能。</noscript>
 
-<!-- 右：匿名小纸条 -->
-<section class="card" aria-label="匿名小纸条">
-<div class="card-head">
-<div>
-<div class="title">匿名小纸条</div>
-<div class="meta">仅本机保存（localStorage），支持导出/导入 JSON</div>
-</div>
-</div>
-<div class="notes">
-<form class="note-form" id="noteForm">
-<textarea id="noteInput" placeholder="想说什么呢…"></textarea>
-<button class="btn" type="submit">放上墙</button>
-</form>
-<div class="toolbar">
-<button class="btn" id="exportBtn" type="button">导出 JSON</button>
-<label class="btn file-label" for="importFile">导入 JSON</label>
-<input id="importFile" type="file" accept="application/json" hidden />
-<button class="btn danger" id="clearBtn" type="button">清空</button>
-</div>
-<div class="wall" id="wall"></div>
-</div>
-</section>
-</main>
+  <!-- JS 入口 -->
+  <script type="module" src="js/main.js"></script>
 
-
-<!-- 心情弹窗 -->
-<div class="modal" id="moodModal" role="dialog" aria-modal="true" aria-labelledby="moodTitle">
-<div class="modal-card">
-<div class="modal-head">
-<div class="title" id="moodTitle">今日心情</div>
-<button class="close" id="closeModal" aria-label="关闭">✕</button>
-</div>
-<img id="moodImg" class="modal-img" alt="mood" />
-<div class="modal-body">
-<p class="quote" id="moodQuote"></p>
-</div>
-</div>
-</div>
-
-<script type="module" src="/js/main.js"></script>
-<script>
-// 注册 Service Worker
-if('serviceWorker' in navigator){
-window.addEventListener('load', ()=>{
-navigator.serviceWorker.register('/sw.js');
-});
-}
-// A2HS（Add to Home Screen）引导
-let deferredPrompt;
-const a2hsBtn = document.getElementById('a2hsBtn');
-window.addEventListener('beforeinstallprompt', (e)=>{
-e.preventDefault(); deferredPrompt = e; a2hsBtn.style.display='block';
-});
-a2hsBtn?.addEventListener('click', async ()=>{
-a2hsBtn.style.display='none';
-if(deferredPrompt){ deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; }
-});
+  <!-- PWA 注册 & A2HS -->
+  <script>
+    if('serviceWorker' in navigator){
+      window.addEventListener('load', ()=>{
+        navigator.serviceWorker.register('sw.js');
+      });
+    }
+    let deferredPrompt;
+    const a2hsBtn = document.getElementById('a2hsBtn');
+    window.addEventListener('beforeinstallprompt', (e)=>{
+      e.preventDefault();
+      deferredPrompt = e;
+      a2hsBtn.style.display='block';
+    });
+    a2hsBtn?.addEventListener('click', async ()=>{
+      a2hsBtn.style.display='none';
+      if(deferredPrompt){
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      }
+    });
   </script>
-  </body>
+</body>
 </html>
