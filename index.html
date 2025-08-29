@@ -4,20 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pink Mood Garden</title>
+  
   <meta name="description" content="粉色系 · 小日历心情 · 爱心点击特效 · 匿名小纸条" />
 
-  <!-- 字体 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- PWA 相关新增 -->
   <meta name="theme-color" content="#ff6aa3" />
   <link rel="manifest" href="manifest.webmanifest">
-   <link rel="apple-touch-icon" href="icons/icon192.png">
+  <link rel="apple-touch-icon" href="icons/icon192.png">
   <link rel="apple-touch-icon" sizes="512x512" href="icons/icon512.png">
 
-  <!-- 样式 -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -29,14 +27,14 @@
       <h1>Pink Mood Garden</h1>
     </div>
   </header>
-
+  <div class="meta" id="ym"></div>
+  
   <main class="container grid">
-    <!-- 左：日历 -->
+    
     <section class="card" aria-label="心情日历">
       <div class="card-head">
         <div>
           <div class="title">小日历 · 心情记录</div>
-          <div class="meta" id="ym"></div>
         </div>
         <div class="actions">
           <button class="btn" id="prevBtn" title="上个月">←</button>
@@ -51,7 +49,6 @@
       </div>
     </section>
 
-    <!-- 右：匿名小纸条 -->
     <section class="card" aria-label="匿名小纸条">
       <div class="card-head">
         <div>
@@ -62,7 +59,7 @@
       <div class="notes">
         <form class="note-form" id="noteForm">
           <textarea id="noteInput" placeholder="想说什么呢…"></textarea>
-          <button class="btn" type="submit">放上墙</button>
+          <button class="btn" type="submit">保存小纸条</button>
         </form>
         <div class="toolbar">
           <button class="btn" id="exportBtn" type="button">导出 JSON</button>
@@ -70,12 +67,14 @@
           <input id="importFile" type="file" accept="application/json" hidden />
           <button class="btn danger" id="clearBtn" type="button">清空</button>
         </div>
+        <a href="/wall.html" class="btn primary wall-link">
+            去匿名心情分享墙
+        </a>
         <div class="wall" id="wall"></div>
       </div>
     </section>
   </main>
 
-  <!-- 心情弹窗 -->
   <div class="modal" id="moodModal" role="dialog" aria-modal="true" aria-labelledby="moodTitle">
     <div class="modal-card">
       <div class="modal-head">
@@ -89,18 +88,15 @@
     </div>
   </div>
 
-  <!-- 可选：安装到主屏幕按钮 -->
   <button id="a2hsBtn" class="btn"
           style="position:fixed; right:16px; bottom:16px; z-index:50; display:none">
     安装到主屏幕
   </button>
-
+  
   <noscript>需要启用 JavaScript 才能体验日历、便签和特效功能。</noscript>
 
-  <!-- JS 入口 -->
   <script type="module" src="js/main.js"></script>
 
-  <!-- PWA 注册 & A2HS -->
   <script>
     if('serviceWorker' in navigator){
       window.addEventListener('load', ()=>{

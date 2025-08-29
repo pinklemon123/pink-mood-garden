@@ -41,4 +41,4 @@ npm i -g vercel
 vercel
 ```
 
-部署后即可通过生成的域名访问。
+部署后即可通过生成的域名访问。https://pink-mood-garden.vercel.app/

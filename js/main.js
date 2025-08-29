@@ -31,4 +31,4 @@ clearBtn: document.getElementById('clearBtn'),
 
 
 // Click effects
-enableClickHearts({ emoji: '❤' }); // 想换花瓣可传 emoji: '❀' 或 '✿'
+enableClickHearts({ emoji: '✿' }); // 想换花瓣可传 emoji: '❀' 或 '✿''❤'

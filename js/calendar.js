@@ -1,4 +1,3 @@
-export function initCalendar({ ymEl, gridEl, prevBtn, nextBtn, modalEls, moodsUrl = '/assets/data/moods.json' }) {
 export function initCalendar({ ymEl, gridEl, prevBtn, nextBtn, modalEls, moodsUrl = '/assets/data/moods.json' }){
 const { modal, imgEl, quoteEl, closeBtn } = modalEls;
 const FALLBACK_MOODS = [
