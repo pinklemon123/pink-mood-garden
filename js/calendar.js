@@ -1,23 +1,4 @@
-// Calendar & Mood modal (轮播选择 + 预加载，避免总是同一张)
-test.src = payload.img;
-tryOne();
-// Calendar & Mood modal
-export function initCalendar({ ymEl, gridEl, prevBtn, nextBtn, modalEls, moodsUrl = '/assets/data/moods.json' }){
-
-
-prevBtn.addEventListener('click', ()=> setYM(new Date(viewYear, viewMonth-1, 1)));
-nextBtn.addEventListener('click', ()=> setYM(new Date(viewYear, viewMonth+1, 1)));
-closeBtn.addEventListener('click', ()=> modal.classList.remove('open'));
-window.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.classList.remove('open'); });
-
-
-(async function init(){
-await loadMoods();
-setYM(new Date());
-})();
-}
-// Calendar & Mood modal
-export function initCalendar({ ymEl, gridEl, prevBtn, nextBtn, modalEls, moodsUrl = '/assets/data/moods.json' }){
+export function initCalendar({ ymEl, gridEl, prevBtn, nextBtn, modalEls, moodsUrl = '/assets/data/moods.json' }) {
 const { modal, imgEl, quoteEl, closeBtn } = modalEls;
 const FALLBACK_MOODS = [
 { img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop", quote: "愿你所到之处，皆是粉色的温柔光。" },
