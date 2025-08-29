@@ -84,7 +84,12 @@
 </div>
 <img id="moodImg" class="modal-img" alt="mood" />
 <div class="modal-body">
-</html>
+<p class="quote" id="moodQuote"></p>
+</div>
+</div>
+</div>
+
+<script type="module" src="/js/main.js"></script>
 <script>
 // 注册 Service Worker
 if('serviceWorker' in navigator){
@@ -102,5 +107,6 @@ a2hsBtn?.addEventListener('click', async ()=>{
 a2hsBtn.style.display='none';
 if(deferredPrompt){ deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; }
 });
-</script>
-</body>
+  </script>
+  </body>
+</html>
