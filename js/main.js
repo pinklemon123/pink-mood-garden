@@ -15,7 +15,7 @@ imgEl: document.getElementById('moodImg'),
 quoteEl: document.getElementById('moodQuote'),
 closeBtn: document.getElementById('closeModal'),
 },
-moodsUrl: '/assets/data/moods.json', // 可选：若不存在则回退内置样例
+moodsUrl: 'assets/data/moods.json', // 可选：若不存在则回退内置样例
 });
 
 
@@ -81,7 +81,7 @@ function seededIndex(seed, modulo) {
 }
 function pickTodayImagePath() {
   const idx = seededIndex(getDateSeed(), MOOD_TOTAL_IMAGES) + 1; // 1..24
-  return `img/mood${idx}.png`;
+  return `assets/img/mood${idx}.png`;
 }
 function pickTodayQuote() {
   const idx = seededIndex(getDateSeed() + 1314, MOOD_QUOTES.length);
@@ -91,7 +91,7 @@ function pickTodayQuote() {
 // ——— B. 每次刷新都随机（如需此模式，把下方两行换成 random 版本即可）
 // function pickTodayImagePath() {
 //   const idx = Math.floor(Math.random() * MOOD_TOTAL_IMAGES) + 1;
-//   return `img/mood${idx}.png`;
+//   return `assets/img/mood${idx}.png`;
 // }
 // function pickTodayQuote() {
 //   const idx = Math.floor(Math.random() * MOOD_QUOTES.length);

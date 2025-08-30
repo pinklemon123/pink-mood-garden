@@ -2,18 +2,17 @@
 const CACHE_VERSION = 'v1.0.1';
 const STATIC_CACHE = `pmg-static-${CACHE_VERSION}`;
 const STATIC_ASSETS = [
- '/',
- '/index.html',
- '/css/style.css',
- '/js/main.js',
- '/js/calendar.js',
- '/js/notes.js',
- '/js/effects.js',
- '/assets/data/moods.json', // 若不存在会忽略
- '/icons/icon192.png',
- '/icons/icon512.png',
- '/icons/iconmaskable192.png',
- '/icons/iconmaskable512.png'
+  'index.html',
+  'css/style.css',
+  'js/main.js',
+  'js/calendar.js',
+  'js/notes.js',
+  'js/effects.js',
+  'assets/data/moods.json', // 若不存在会忽略
+  'icons/icon192.png',
+  'icons/icon512.png',
+  'icons/iconmaskable192.png',
+  'icons/iconmaskable512.png'
 ];
 
 
